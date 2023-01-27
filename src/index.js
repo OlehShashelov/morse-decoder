@@ -39,6 +39,16 @@ const MORSE_TABLE = {
 
 function decode(expr) {
     // write your solution here
+    const dashesAndDotArr = expr.match(/.{1,10}/g).map(i => i.match(/.{1,2}/g)).map(it => {
+        const arr = [];
+        it.forEach(item => {
+            if(item === '10') arr.push('.');
+            if(item === '11') arr.push('-');
+        });
+        return arr.join('');
+    });
+    const res = dashesAndDotArr.map(i => i === '' ? ' ' : MORSE_TABLE[i]).join('');
+    return res;
 }
 
 module.exports = {
